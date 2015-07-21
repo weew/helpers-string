@@ -1,0 +1,19 @@
+{
+    "name": "weew/php-helpers-string",
+    "description": "Collection of useful php string helpers.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Maxim Kott",
+            "email": "maximkott@gmail.com"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "src/string.php"
+        ]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.7"
+    }
+}
