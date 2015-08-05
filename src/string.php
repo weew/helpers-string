@@ -36,7 +36,7 @@ if ( ! function_exists('str_starts_with')) {
             return $match == $search;
         }
 
-        return strcasecmp($match, $search) == 0;
+        return strcasecmp($match, $search) === 0;
     }
 }
 
