@@ -25,11 +25,18 @@ if ( ! function_exists('str_starts_with')) {
      *
      * @param $string
      * @param $search
+     * @param bool $caseSensitive
      *
      * @return bool
      */
-    function str_starts_with($string, $search) {
-        return substr($string, 0, strlen($search)) == $search;
+    function str_starts_with($string, $search, $caseSensitive = false) {
+        $match = substr($string, 0, strlen($search));
+
+        if ($caseSensitive) {
+            return $match == $search;
+        }
+
+        return strcasecmp($match, $search) == 0;
     }
 }
 
@@ -39,11 +46,18 @@ if ( ! function_exists('str_ends_with')) {
      *
      * @param $string
      * @param $search
+     * @param bool $caseSensitive
      *
      * @return bool
      */
-    function str_ends_with($string, $search) {
-        return substr($string, -strlen($search)) == $search;
+    function str_ends_with($string, $search, $caseSensitive = false) {
+        $match = substr($string, -strlen($search));
+
+        if ($caseSensitive) {
+            return $match == $search;
+        }
+
+        return strcasecmp($match, $search) === 0;
     }
 }
 

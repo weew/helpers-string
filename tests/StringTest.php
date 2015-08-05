@@ -3,8 +3,11 @@
 class StringTest extends PHPUnit_Framework_TestCase {
     public function strings_provider() {
         return [
-            [true, 'foo bar', 'foo', 'bar'],
-            [false, 'bar foo', 'foo', 'bar'],
+            [true, 'foo bar', 'foo', 'bar', false],
+            [true, 'foo bar', 'Foo', 'Bar', false],
+            [true, 'Foo Bar', 'Foo', 'Bar', true],
+            [false, 'bar foo', 'foo', 'bar', false],
+            [false, 'foo bar', 'Foo', 'Bar', true],
         ];
     }
 
@@ -27,15 +30,15 @@ class StringTest extends PHPUnit_Framework_TestCase {
     /**
      * @dataProvider strings_provider
      */
-    public function test_starts_with($expected, $string, $starts, $ends) {
-        $this->assertEquals($expected, str_starts_with($string, $starts));
+    public function test_starts_with($expected, $string, $starts, $ends, $caseSensitive) {
+        $this->assertEquals($expected, str_starts_with($string, $starts, $caseSensitive));
     }
 
     /**
      * @dataProvider strings_provider
      */
-    public function test_ends_with($expected, $string, $starts, $ends) {
-        $this->assertEquals($expected, str_ends_with($string, $ends));
+    public function test_ends_with($expected, $string, $starts, $ends, $caseSensitive) {
+        $this->assertEquals($expected, str_ends_with($string, $ends, $caseSensitive));
     }
 
     /**
