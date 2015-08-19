@@ -24,6 +24,7 @@ class StringTest extends PHPUnit_Framework_TestCase {
         return [
             ['foo/bar', ['foo', 'bar']],
             ['x/y/z', ['x', 'y', 'z']],
+            ['/http://foo.bar/yolo/baz', ['/////http://foo.bar////yolo////baz/////']],
         ];
     }
 

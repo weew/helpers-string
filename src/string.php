@@ -68,6 +68,10 @@ if ( ! function_exists('path')) {
      * @return string
      */
     function path($paths) {
-        return implode(DIRECTORY_SEPARATOR, func_get_args());
+        $path = implode(DIRECTORY_SEPARATOR, func_get_args());
+        $path = preg_replace('#(^|[^:])//+#', '\\1/', $path);
+        $path = preg_replace('#([/]+$)#', '', $path);
+
+        return $path;
     }
 }
