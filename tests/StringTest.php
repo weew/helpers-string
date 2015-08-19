@@ -20,11 +20,18 @@ class StringTest extends PHPUnit_Framework_TestCase {
         ];
     }
 
-    public function paths_provider() {
+    public function urls_provider() {
         return [
             ['foo/bar', ['foo', 'bar']],
             ['x/y/z', ['x', 'y', 'z']],
-            ['/http://foo.bar/yolo/baz', ['/////http://foo.bar////yolo////baz/////']],
+            ['http://foo.bar/yolo/baz', ['http://foo.bar////yolo////baz/////']],
+        ];
+    }
+
+    public function paths_provider() {
+        return [
+            ['/foo/bar/baz', ['///foo', '/bar////', 'baz////']],
+            ['/foo/bar/baz', ['///foo//', '//bar/', '/baz/']]
         ];
     }
 
@@ -50,9 +57,26 @@ class StringTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
+     * @dataProvider urls_provider
+     */
+    public function test_url($expected, $segments) {
+        $this->assertEquals(
+            $expected, call_user_func_array('url', $segments)
+        );
+        $this->assertEquals(
+            $expected, call_user_func_array('url', $segments)
+        );
+    }
+
+    /**
      * @dataProvider paths_provider
      */
     public function test_path($expected, $segments) {
-        $this->assertEquals($expected, call_user_func_array('path', $segments));
+        $this->assertEquals(
+            $expected, call_user_func_array('path', $segments)
+        );
+        $this->assertEquals(
+            $expected, path($segments)
+        );
     }
 }

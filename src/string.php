@@ -61,16 +61,47 @@ if ( ! function_exists('str_ends_with')) {
     }
 }
 
+if ( ! function_exists('url')) {
+    /**
+     * Combine multiple strings to a url.
+     *
+     * @param $paths
+     *
+     * @return string
+     */
+    function url($paths) {
+        if ( ! is_array($paths)) {
+            $paths = func_get_args();
+        }
+
+        $path = implode('/', $paths);
+        $path = preg_replace('#(^|[^:])//+#', '\\1/', $path);
+        $path = preg_replace('#([/]+$)#', '', $path);
+
+        return $path;
+    }
+}
+
 if ( ! function_exists('path')) {
     /**
+     * Combine multiple strings to a path.
+     *
      * @param $paths
      *
      * @return string
      */
     function path($paths) {
-        $path = implode(DIRECTORY_SEPARATOR, func_get_args());
-        $path = preg_replace('#(^|[^:])//+#', '\\1/', $path);
-        $path = preg_replace('#([/]+$)#', '', $path);
+        if ( ! is_array($paths)) {
+            $paths = func_get_args();
+        }
+
+        $path = implode(DIRECTORY_SEPARATOR, $paths);
+        $path = preg_replace(
+            '#' . DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR . '+#',
+            DIRECTORY_SEPARATOR,
+            $path
+        );
+        $path = preg_replace('#([' . DIRECTORY_SEPARATOR . ']+$)#', '', $path);
 
         return $path;
     }
