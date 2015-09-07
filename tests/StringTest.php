@@ -79,4 +79,14 @@ class StringTest extends PHPUnit_Framework_TestCase {
             $expected, path($segments)
         );
     }
+
+    public function test_get_type() {
+        $this->assertEquals('Closure', get_type(function() {}));
+        $this->assertEquals('string', get_type('foo'));
+        $this->assertEquals('integer', get_type(1));
+        $this->assertEquals('double', get_type(1.0));
+        $this->assertEquals('boolean', get_type(true));
+        $this->assertEquals('array', get_type([]));
+        $this->assertEquals('stdClass', get_type(new stdClass()));
+    }
 }

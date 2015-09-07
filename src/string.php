@@ -106,3 +106,22 @@ if ( ! function_exists('path')) {
         return $path;
     }
 }
+
+if ( ! function_exists('get_type')) {
+    /**
+     * Get type of a value.
+     *
+     * @param $abstract
+     *
+     * @return string
+     */
+    function get_type($abstract) {
+        $type = gettype($abstract);
+
+        if ($type == 'object') {
+            $type = get_class($abstract);
+        }
+
+        return $type;
+    }
+}
