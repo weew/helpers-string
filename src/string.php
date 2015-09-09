@@ -125,3 +125,48 @@ if ( ! function_exists('get_type')) {
         return $type;
     }
 }
+
+if ( ! function_exists('str_snake_case')) {
+    /**
+     * Convert string to snake_case.
+     *
+     * @param $string
+     *
+     * @return string
+     */
+    function str_snake_case($string) {
+        $string = str_replace(['-', '_'], '', $string);
+        $string = strtolower(preg_replace('/(?<!^)([A-Z])/', '_$1', $string));
+
+        return $string;
+    }
+}
+
+if ( ! function_exists('str_camel_case')) {
+    /**
+     * Convert string to CamelCase.
+     *
+     * @param $string
+     * @param array $delimiters
+     *
+     * @return string
+     */
+    function str_camel_case($string, array $delimiters = ['-', '_']) {
+        return str_replace(
+            ' ', '', ucwords(str_replace($delimiters, ' ', $string))
+        );
+    }
+}
+
+if ( ! function_exists('str_random')) {
+    /**
+     * Generate a random alphanumeric string.
+     *
+     * @param int $length
+     *
+     * @return string
+     */
+    function str_random($length = 10) {
+        return substr(bin2hex(openssl_random_pseudo_bytes($length / 2 + 1)), 0, $length);
+    }
+}

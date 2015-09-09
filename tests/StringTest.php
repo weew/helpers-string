@@ -89,4 +89,60 @@ class StringTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals('array', get_type([]));
         $this->assertEquals('stdClass', get_type(new stdClass()));
     }
+
+    public function str_snake_case_provider() {
+        return [
+            ['foo_bar', '_FooBar-'],
+            ['foobar', 'Foobar-_'],
+            ['foo_bar', 'FooBar__'],
+            ['a_b_c_d', '_ABC_-D']
+        ];
+    }
+
+    /**
+     * @dataProvider str_snake_case_provider
+     */
+    public function test_str_snake_case($expected, $string) {
+        $this->assertEquals($expected, str_snake_case($string));
+    }
+
+    public function str_camel_case_provider() {
+        return [
+            ['FooBar', 'foo__-bar_'],
+            ['Foobar', 'foobar-'],
+            ['FooBar', '__foo_bar'],
+            ['ABCD', '-a_b_c_-d'],
+        ];
+    }
+
+    /**
+     * @dataProvider str_camel_case_provider
+     */
+    public function test_str_camel_case($expected, $string) {
+        $this->assertEquals($expected, str_camel_case($string));
+    }
+
+    public function str_random_provider() {
+        return [
+            [1],
+            [2],
+            [20],
+            [33],
+            [17],
+            [289],
+        ];
+    }
+
+    /**
+     * @dataProvider str_random_provider
+     */
+    public function test_str_random($length) {
+        $str1 = str_random($length);
+        $str2 = str_random($length);
+
+        $this->assertEquals($length, strlen($str1));
+        $this->assertEquals($length, strlen($str2));
+
+        $this->assertTrue($str1 != $str2);
+    }
 }
