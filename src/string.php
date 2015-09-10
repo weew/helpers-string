@@ -189,3 +189,14 @@ if ( ! function_exists('uuid')) {
         );
     }
 }
+
+if ( ! function_exists('simple_uuid')) {
+    /**
+     * Generate a uuid of a simpler format.
+     *
+     * @return string
+     */
+    function simple_uuid() {
+        return str_random(32);
+    }
+}
