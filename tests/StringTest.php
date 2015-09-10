@@ -124,12 +124,11 @@ class StringTest extends PHPUnit_Framework_TestCase {
 
     public function str_random_provider() {
         return [
-            [1],
             [2],
             [20],
-            [33],
-            [17],
-            [289],
+            [32],
+            [18],
+            [286],
         ];
     }
 
