@@ -144,4 +144,11 @@ class StringTest extends PHPUnit_Framework_TestCase {
 
         $this->assertTrue($str1 != $str2);
     }
+
+    public function test_uuid() {
+        $id1 = uuid();
+        $id2 = uuid();
+
+        $this->assertTrue($id1 != $id2);
+    }
 }

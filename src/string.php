@@ -171,5 +171,21 @@ if ( ! function_exists('str_random')) {
         return bin2hex(openssl_random_pseudo_bytes($length / 2));
     }
 }
+
+if ( ! function_exists('uuid')) {
+    /**
+     * Generate a v4 uuid.
+     * http://stackoverflow.com/a/15875555/1734033
+     *
+     * @return string
+     */
+    function uuid() {
+        $data = openssl_random_pseudo_bytes(16);
+        $data[6] = chr(ord($data[6]) & 0x0f | 0x40);
+        $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
+
+        return vsprintf(
+            '%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4)
+        );
     }
 }
