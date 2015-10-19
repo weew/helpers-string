@@ -142,9 +142,25 @@ if ( ! function_exists('str_snake_case')) {
     }
 }
 
+if ( ! function_exists('str_studly_caps')) {
+    /**
+     * Convert string to StudlyCase.
+     *
+     * @param $string
+     * @param array $delimiters
+     *
+     * @return string
+     */
+    function str_studly_caps($string, array $delimiters = ['-', '_']) {
+        return str_replace(
+            ' ', '', ucwords(str_replace($delimiters, ' ', $string))
+        );
+    }
+}
+
 if ( ! function_exists('str_camel_case')) {
     /**
-     * Convert string to CamelCase.
+     * Convert a string to camelCase.
      *
      * @param $string
      * @param array $delimiters
@@ -152,9 +168,7 @@ if ( ! function_exists('str_camel_case')) {
      * @return string
      */
     function str_camel_case($string, array $delimiters = ['-', '_']) {
-        return str_replace(
-            ' ', '', ucwords(str_replace($delimiters, ' ', $string))
-        );
+        return lcfirst(str_studly_caps($string, $delimiters));
     }
 }
 

@@ -106,13 +106,30 @@ class StringTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals($expected, str_snake_case($string));
     }
 
-    public function str_camel_case_provider() {
+    public function str_studly_case_provider() {
         return [
             ['FooBar', 'foo__-bar_'],
             ['Foobar', 'foobar-'],
             ['FooBar', '__foo_bar'],
             ['ABCD', '-a_b_c_-d'],
         ];
+    }
+
+    public function str_camel_case_provider() {
+        return [
+            ['fooBar', 'foo__-bar_'],
+            ['foobar', 'foobar-'],
+            ['fooBar', '__foo_bar'],
+            ['aBCD', '-a_b_c_-d'],
+            ['fooBar', 'FooBar'],
+        ];
+    }
+
+    /**
+     * @dataProvider str_studly_case_provider
+     */
+    public function test_str_studly_case($expected, $string) {
+        $this->assertEquals($expected, str_studly_caps($string));
     }
 
     /**
