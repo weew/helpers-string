@@ -7,6 +7,102 @@
 [![Version](https://img.shields.io/packagist/v/weew/php-helpers-string.svg)](https://packagist.org/packages/weew/php-helpers-string)
 [![Licence](https://img.shields.io/packagist/l/weew/php-helpers-string.svg)](https://packagist.org/packages/weew/php-helpers-string)
 
+## Table of contents
+
+- [Installation](#installation)
+- [Introduction](#introduction)
+- [Functions](#functions)
+    - [s](#s)
+    - [str_starts_with](#str_starts_with)
+    - [str_ends_with](#str_ends_with)
+    - [url](#url)
+    - [path](#path)
+    - [get_type](#get_type)
+    - [str_snake_case](#str_snake_case)
+    - [str_studly_caps](#str_studly_caps)
+    - [str_camel_case](#str_camel_case)
+    - [str_random](#str_random)
+    - [uuid](#uuid)
+    - [simple_uuid](#simple_uuid)
+
 ## Installation
 
 `composer install weew/php-helpers-string`
+
+## Introduction
+
+This tiny library provides various helper functions to deal with common string manipulation related problems.
+
+## Functions
+
+#### s
+
+Simple helper to format strings. Supports placeholders like `:key` and `%s`.
+
+`string s(string $format, mixed $args [, mixed $...])`
+
+#### str\_starts\_with
+
+Check if a string starts with the given sequence.
+
+`bool str_starts_with(string $string, string $search [, bool $caseSensitive = false])`
+
+#### str\_ends\_with
+
+heck if a string ends with the given sequence.
+
+`bool str_ends_with(string $string, string $search [, bool $caseSensitive = false])`
+
+#### url
+
+Combine multiple strings to a url. This function makes sure the pieces are properly glued together with a `/` and eliminates all `//`, except after the protocol.
+
+`string url(string $paths [, $...])`
+
+#### path
+
+Combine multiple strings to a path. Glues pieces together with the proper directory separator and eliminates all `//` or `\\`.
+
+`string path(string $paths [, $...])`
+
+#### get\_type
+
+Get type of a value. Returns values like `int`, `string`, `function`. Objects will return its class name.
+
+`string get_type(mixed $abstract)`
+
+#### str\_snake\_case
+
+Convert string to snake_case.
+
+`string str_snake_case(string $string)`
+
+#### str\_studly\_caps
+
+Convert string to StudlyCase.
+
+`string str_studly_caps(string $string, [, array $delimiters = ['-', '_']])`
+
+#### str\_camel\_case
+
+Convert a string to camelCase.
+
+`string str_camel_case(string $string, [, array $delimiters = ['-', '_']])`
+
+#### str\_random
+
+Generate a random alphanumeric string. Works only with even numbers.
+
+`string str_random([$length = 10])`
+
+#### uuid
+
+Generate a v4 uuid.
+
+`string uuid()`
+
+#### simple\_uuid
+
+Generate a uuid of a simpler format.
+
+`string simple_uuid()`
