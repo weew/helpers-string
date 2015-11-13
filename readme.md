@@ -93,7 +93,7 @@ Convert a string to camelCase.
 
 Generate a random alphanumeric string. Works only with even numbers.
 
-`string str_random([$length = 10])`
+`string str_random([int $length = 10])`
 
 #### uuid
 
