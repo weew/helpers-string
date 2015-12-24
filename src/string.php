@@ -12,10 +12,15 @@ if ( ! function_exists('s')) {
      */
     function s($format, $args) {
         if (is_array($args)) {
-            return strtr($format, $args);
+            $string = strtr($format, $args);
         } else {
-            return call_user_func_array('sprintf', func_get_args());
+            $string = call_user_func_array('sprintf', func_get_args());
         }
+
+        return strtr($string, [
+            '\t' => "\t",
+            '\n' => "\n",
+        ]);
     }
 }
 
