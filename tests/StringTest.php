@@ -169,10 +169,20 @@ class StringTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($id1 != $id2);
     }
 
-    public function test_simple_uuid() {
-        $id1 = simple_uuid();
-        $id2 = simple_uuid();
+    public function test_uuid_with_prefix() {
+        $uuid = uuid('foo');
+        $this->assertStringStartsWith('foo', $uuid);
+    }
+
+    public function test_uuid_simple() {
+        $id1 = uuid_simple();
+        $id2 = uuid_simple();
 
         $this->assertTrue($id1 != $id2);
+    }
+
+    public function test_uuid_simple_with_prefix() {
+        $uuid = uuid_simple('foo');
+        $this->assertStringStartsWith('foo', $uuid);
     }
 }

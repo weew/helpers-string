@@ -196,26 +196,42 @@ if ( ! function_exists('uuid')) {
      * Generate a v4 uuid.
      * http://stackoverflow.com/a/15875555/1734033
      *
+     * @param null $prefix
+     *
      * @return string
      */
-    function uuid() {
+    function uuid($prefix = null) {
         $data = openssl_random_pseudo_bytes(16);
         $data[6] = chr(ord($data[6]) & 0x0f | 0x40);
         $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
 
-        return vsprintf(
+        $uuid = vsprintf(
             '%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4)
         );
+
+        if ($prefix !== null) {
+            $uuid = s('%s-%s', $prefix, $uuid);
+        }
+
+        return $uuid;
     }
 }
 
-if ( ! function_exists('simple_uuid')) {
+if ( ! function_exists('uuid_simple')) {
     /**
      * Generate a uuid of a simpler format.
      *
+     * @param null $prefix
+     *
      * @return string
      */
-    function simple_uuid() {
-        return str_random(32);
+    function uuid_simple($prefix = null) {
+        $uuid = str_random(32);
+
+        if ($prefix !== null) {
+            $uuid = s('%s-%s', $prefix, $uuid);
+        }
+
+        return $uuid;
     }
 }
