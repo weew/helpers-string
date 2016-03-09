@@ -42,6 +42,11 @@ class StringTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals($expected, str_starts_with($string, $starts, $caseSensitive));
     }
 
+    public function test_starts_with_array() {
+        $this->assertTrue(str_starts_with('foo', ['a', 'b', 'f']));
+        $this->assertFalse(str_starts_with('foo', ['a', 'b','c']));
+    }
+
     /**
      * @dataProvider strings_provider
      */

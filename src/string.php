@@ -28,20 +28,30 @@ if ( ! function_exists('str_starts_with')) {
     /**
      * Check if a string starts with the given sequence.
      *
-     * @param $string
-     * @param $search
+     * @param string $string
+     * @param string|array $search
      * @param bool $caseSensitive
      *
      * @return bool
      */
     function str_starts_with($string, $search, $caseSensitive = false) {
-        $match = substr($string, 0, strlen($search));
-
-        if ($caseSensitive) {
-            return $match == $search;
+        if ( ! is_array($search)) {
+            $search = [$search];
         }
 
-        return strcasecmp($match, $search) === 0;
+        foreach ($search as $item) {
+            $match = substr($string, 0, strlen($item));
+
+            if ($caseSensitive) {
+                if ($match == $item) {
+                    return true;
+                }
+            } else if (strcasecmp($match, $item) === 0) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
 
