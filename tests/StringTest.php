@@ -58,6 +58,11 @@ class StringTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals($expected, str_ends_with($string, $ends, $caseSensitive));
     }
 
+    public function test_ends_with_array() {
+        $this->assertTrue(str_starts_with('foo', ['o', 'b', 'f']));
+        $this->assertFalse(str_starts_with('foo', ['a', 'b','c']));
+    }
+
     public function test_ends_with_on_non_string() {
         $this->assertFalse(str_ends_with([], 'a'));
     }

@@ -74,13 +74,23 @@ if ( ! function_exists('str_ends_with')) {
             return false;
         }
 
-        $match = substr($string, -strlen($search));
-
-        if ($caseSensitive) {
-            return $match == $search;
+        if ( ! is_array($search)) {
+            $search = [$search];
         }
 
-        return strcasecmp($match, $search) === 0;
+        foreach ($search as $item) {
+            $match = substr($string, -strlen($item));
+
+            if ($caseSensitive) {
+                if ($match == $item) {
+                    return true;
+                }
+            } else if(strcasecmp($match, $item) === 0) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
 
