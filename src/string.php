@@ -35,6 +35,10 @@ if ( ! function_exists('str_starts_with')) {
      * @return bool
      */
     function str_starts_with($string, $search, $caseSensitive = false) {
+        if ( ! $string) {
+            return false;
+        }
+
         if ( ! is_array($search)) {
             $search = [$search];
         }
@@ -66,6 +70,10 @@ if ( ! function_exists('str_ends_with')) {
      * @return bool
      */
     function str_ends_with($string, $search, $caseSensitive = false) {
+        if ( ! $string) {
+            return false;
+        }
+
         $match = substr($string, -strlen($search));
 
         if ($caseSensitive) {
