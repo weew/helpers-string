@@ -35,7 +35,7 @@ if ( ! function_exists('str_starts_with')) {
      * @return bool
      */
     function str_starts_with($string, $search, $caseSensitive = false) {
-        if ( ! $string) {
+        if ( ! is_string($string)) {
             return false;
         }
 
@@ -70,7 +70,7 @@ if ( ! function_exists('str_ends_with')) {
      * @return bool
      */
     function str_ends_with($string, $search, $caseSensitive = false) {
-        if ( ! $string) {
+        if ( ! is_string($string)) {
             return false;
         }
 
