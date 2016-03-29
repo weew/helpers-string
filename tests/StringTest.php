@@ -74,6 +74,10 @@ class StringTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals($expected, s($format, $arg1, $arg2, $arg3));
     }
 
+    public function test_s_without_arguments() {
+        $this->assertEquals('foo % bar', s('foo % bar'));
+    }
+
     /**
      * @dataProvider urls_provider
      */

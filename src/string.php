@@ -10,11 +10,13 @@ if ( ! function_exists('s')) {
      *
      * @return string
      */
-    function s($format, $args) {
+    function s($format, $args = null) {
         if (is_array($args)) {
             $string = strtr($format, $args);
-        } else {
+        } else if ($args !== null) {
             $string = call_user_func_array('sprintf', func_get_args());
+        } else {
+            $string = $format;
         }
 
         return strtr($string, [
