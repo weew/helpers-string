@@ -207,4 +207,11 @@ class StringTest extends PHPUnit_Framework_TestCase {
         $uuid = uuid_simple('foo');
         $this->assertStringStartsWith('foo', $uuid);
     }
+
+    public function test_str_explode() {
+        $this->assertEquals(['a', 'b'], str_explode('a:b', [':']));
+        $this->assertEquals(['a', 'b'], str_explode('a:b', ':'));
+        $this->assertEquals(['a:b'], str_explode('a:b', []));
+        $this->assertEquals(['a', 'b', 'c', 'd'], str_explode('a:b_c#d', [':', '_', '#']));
+    }
 }

@@ -221,6 +221,32 @@ if ( ! function_exists('str_random')) {
     }
 }
 
+if ( ! function_exists('str_explode')) {
+    /**
+     * Split a string by one or multiple delimiters.
+     * Works the same way as the "explode" function, but allows several delimiters.
+     *
+     * @param string $string
+     * @param string|array $delimiter
+     * @param int $limit
+     *
+     * @return array
+     */
+    function str_explode($string, $delimiter, $limit = PHP_INT_MAX) {
+        if ( ! is_array($delimiter)) {
+            $delimiter = [$delimiter];
+        } else if (count($delimiter) === 0) {
+            return [$string];
+        }
+
+        if (count($delimiter) > 1) {
+            $string = str_replace($delimiter, $delimiter[0], $string);
+        }
+
+        return explode($delimiter[0], $string, $limit);
+    }
+}
+
 if ( ! function_exists('uuid')) {
     /**
      * Generate a v4 uuid.

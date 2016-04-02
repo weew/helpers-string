@@ -20,6 +20,7 @@
     - [str_studly_caps](#str_studly_caps)
     - [str_camel_case](#str_camel_case)
     - [str_random](#str_random)
+    - [str_explode](#str_explode)
     - [uuid](#uuid)
     - [simple_uuid](#simple_uuid)
 
@@ -79,19 +80,25 @@ Convert string to snake_case.
 
 Convert string to StudlyCase.
 
-`string str_studly_caps(string $string, [, array $delimiters = ['-', '_']])`
+`string str_studly_caps(string $string [, array $delimiters = ['-', '_']])`
 
 #### str\_camel\_case
 
 Convert a string to camelCase.
 
-`string str_camel_case(string $string, [, array $delimiters = ['-', '_']])`
+`string str_camel_case(string $string [, array $delimiters = ['-', '_']])`
 
 #### str\_random
 
 Generate a random alphanumeric string. Works only with even numbers.
 
 `string str_random([int $length = 10])`
+
+#### str\_explode
+
+Split a string by one or multiple delimiters. Works the same way as the `explode` function, but allows several delimiters.
+
+`string str_explode(string $string, string|array $delimiter [, int $limit = PHP_INT_MAX])`
 
 #### uuid
 
