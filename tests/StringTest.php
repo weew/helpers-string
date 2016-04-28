@@ -214,4 +214,17 @@ class StringTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(['a:b'], str_explode('a:b', []));
         $this->assertEquals(['a', 'b', 'c', 'd'], str_explode('a:b_c#d', [':', '_', '#']));
     }
+
+    public function test_format_xml() {
+        $xml = '<root><element>foo</element></root>';
+        $expected = <<<XML
+<?xml version="1.0"?>
+<root>
+  <element>foo</element>
+</root>
+
+XML;
+
+        $this->assertEquals($expected, format_xml($xml));
+    }
 }

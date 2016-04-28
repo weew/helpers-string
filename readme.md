@@ -23,6 +23,7 @@
     - [str_explode](#str_explode)
     - [uuid](#uuid)
     - [simple_uuid](#simple_uuid)
+    - [format_xml](#format_xml)
 
 ## Installation
 
@@ -111,3 +112,9 @@ Generate a v4 uuid.
 Generate a uuid of a simpler format.
 
 `string simple_uuid()`
+
+#### format\_xml
+
+Format an xml string.
+
+`string format_xml($string)`

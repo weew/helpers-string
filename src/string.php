@@ -291,3 +291,22 @@ if ( ! function_exists('uuid_simple')) {
         return $uuid;
     }
 }
+
+if ( ! function_exists('format_xml')) {
+    /**
+     * @param string $string
+     *
+     * @return string
+     */
+    function format_xml($string) {
+        try {
+            $dom = new DOMDocument();
+            $dom->preserveWhiteSpace = false;
+            $dom->formatOutput = true;
+            $dom->loadXML($string);
+            $string = $dom->saveXML();
+        } catch (Exception $ex) {}
+
+        return $string;
+    }
+}
