@@ -199,6 +199,22 @@ class StringTest extends PHPUnit_Framework_TestCase {
         $this->assertStringStartsWith('foo', $uuid);
     }
 
+    public function test_uuid_does_not_end_with_a_dash() {
+        $this->assertFalse(str_ends_with(uuid('abcdefghijk'), '-'));
+    }
+
+    public function test_uuid_has_a_default_length() {
+        $this->assertEquals(36, strlen(uuid()));
+        $this->assertEquals(36, strlen(uuid('abcdefghijk')));
+    }
+
+    public function test_uuid_takes_custom_length() {
+        $this->assertEquals(15, strlen(uuid(null, 15)));
+        $this->assertEquals(15, strlen(uuid('abcdefghijk', 15)));
+        $this->assertEquals(55, strlen(uuid(null, 55)));
+        $this->assertEquals(55, strlen(uuid('abcdefghijk', 55)));
+    }
+
     public function test_uuid_simple() {
         $id1 = uuid_simple();
         $id2 = uuid_simple();
@@ -219,6 +235,8 @@ class StringTest extends PHPUnit_Framework_TestCase {
     public function test_uuid_simple_takes_custom_length() {
         $this->assertEquals(15, strlen(uuid_simple(null, 15)));
         $this->assertEquals(15, strlen(uuid_simple('abcdefghijk', 15)));
+        $this->assertEquals(55, strlen(uuid_simple(null, 55)));
+        $this->assertEquals(55, strlen(uuid_simple('abcdefghijk', 55)));
     }
 
     public function test_str_explode() {

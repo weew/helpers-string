@@ -259,11 +259,12 @@ if ( ! function_exists('uuid')) {
      * Generate a v4 uuid.
      * http://stackoverflow.com/a/15875555/1734033
      *
-     * @param null $prefix
+     * @param string $prefix
+     * @param int $length
      *
      * @return string
      */
-    function uuid($prefix = null) {
+    function uuid($prefix = null, $length = 36) {
         $data = openssl_random_pseudo_bytes(16);
         $data[6] = chr(ord($data[6]) & 0x0f | 0x40);
         $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
@@ -272,8 +273,18 @@ if ( ! function_exists('uuid')) {
             '%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4)
         );
 
-        if ($prefix !== null) {
+        if ($prefix) {
             $uuid = s('%s-%s', $prefix, $uuid);
+        }
+
+        while (strlen($uuid) < $length) {
+            $uuid .= '-' . uuid();
+        }
+
+        $uuid = substr($uuid, 0, $length);
+
+        while (str_ends_with($uuid, '-')) {
+            $uuid = substr($uuid, 0, -1) . str_random(1);
         }
 
         return $uuid;
@@ -294,10 +305,6 @@ if ( ! function_exists('uuid_simple')) {
 
         if ($prefix) {
             $uuid = s('%s-%s', $prefix, $uuid);
-        }
-
-        while (strlen($uuid) < $length) {
-            $uuid .= uuid_simple();
         }
 
         return substr($uuid, 0, $length);
