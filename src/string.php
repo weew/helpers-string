@@ -284,18 +284,23 @@ if ( ! function_exists('uuid_simple')) {
     /**
      * Generate a uuid of a simpler format.
      *
-     * @param null $prefix
+     * @param string $prefix
+     * @param int $length
      *
      * @return string
      */
-    function uuid_simple($prefix = null) {
-        $uuid = str_random(32);
+    function uuid_simple($prefix = null, $length = 32) {
+        $uuid = str_random($length);
 
-        if ($prefix !== null) {
+        if ($prefix) {
             $uuid = s('%s-%s', $prefix, $uuid);
         }
 
-        return $uuid;
+        while (strlen($uuid) < $length) {
+            $uuid .= uuid_simple();
+        }
+
+        return substr($uuid, 0, $length);
     }
 }
 

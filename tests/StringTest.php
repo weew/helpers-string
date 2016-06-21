@@ -211,6 +211,16 @@ class StringTest extends PHPUnit_Framework_TestCase {
         $this->assertStringStartsWith('foo', $uuid);
     }
 
+    public function test_uuid_simple_has_default_length() {
+        $this->assertEquals(32, strlen(uuid_simple()));
+        $this->assertEquals(32, strlen(uuid_simple('abcdefghijk')));
+    }
+
+    public function test_uuid_simple_takes_custom_length() {
+        $this->assertEquals(15, strlen(uuid_simple(null, 15)));
+        $this->assertEquals(15, strlen(uuid_simple('abcdefghijk', 15)));
+    }
+
     public function test_str_explode() {
         $this->assertEquals(['a', 'b'], str_explode('a:b', [':']));
         $this->assertEquals(['a', 'b'], str_explode('a:b', ':'));
