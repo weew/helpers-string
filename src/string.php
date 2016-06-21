@@ -210,14 +210,21 @@ if ( ! function_exists('str_camel_case')) {
 if ( ! function_exists('str_random')) {
     /**
      * Generate a random alphanumeric string.
-     * Works only with even numbers.
      *
      * @param int $length
      *
      * @return string
      */
     function str_random($length = 10) {
-        return bin2hex(openssl_random_pseudo_bytes($length / 2));
+        $bytes = $length;
+
+        if ($length % 2 !== 0) {
+            $bytes = $length + 1;
+        }
+
+        $string = bin2hex(openssl_random_pseudo_bytes($bytes));
+
+        return substr($string, 0, $length);
     }
 }
 

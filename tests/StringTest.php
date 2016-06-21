@@ -163,9 +163,12 @@ class StringTest extends PHPUnit_Framework_TestCase {
 
     public function str_random_provider() {
         return [
+            [1],
             [2],
+            [3],
             [20],
             [32],
+            [33],
             [18],
             [286],
         ];
