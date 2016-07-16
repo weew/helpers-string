@@ -1,9 +1,9 @@
 # String helpers
 
-[![Build Status](https://img.shields.io/travis/weew/php-helpers-string.svg)](https://travis-ci.org/weew/php-helpers-string)
-[![Test Coverage](https://img.shields.io/coveralls/weew/php-helpers-string.svg)](https://coveralls.io/github/weew/php-helpers-string)
-[![Version](https://img.shields.io/packagist/v/weew/php-helpers-string.svg)](https://packagist.org/packages/weew/php-helpers-string)
-[![Licence](https://img.shields.io/packagist/l/weew/php-helpers-string.svg)](https://packagist.org/packages/weew/php-helpers-string)
+[![Build Status](https://img.shields.io/travis/weew/helpers-string.svg)](https://travis-ci.org/weew/helpers-string)
+[![Test Coverage](https://img.shields.io/coveralls/weew/helpers-string.svg)](https://coveralls.io/github/weew/helpers-string)
+[![Version](https://img.shields.io/packagist/v/weew/helpers-string.svg)](https://packagist.org/packages/weew/helpers-string)
+[![Licence](https://img.shields.io/packagist/l/weew/helpers-string.svg)](https://packagist.org/packages/weew/helpers-string)
 
 ## Table of contents
 
@@ -27,7 +27,7 @@
 
 ## Installation
 
-`composer install weew/php-helpers-string`
+`composer install weew/helpers-string`
 
 ## Introduction
 
