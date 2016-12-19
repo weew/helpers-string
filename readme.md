@@ -22,6 +22,7 @@
     - [str_random](#str_random)
     - [str_explode](#str_explode)
     - [uuid](#uuid)
+    - [uuid_format](#uuid_format)
     - [simple_uuid](#simple_uuid)
     - [format_xml](#format_xml)
 
@@ -105,7 +106,13 @@ Split a string by one or multiple delimiters. Works the same way as the `explode
 
 Generate a v4 uuid.
 
-`string uuid()`
+`string uuid([string $prefix = null, int $length = 36])`
+
+#### uuid\_format
+
+Format string as a v4 uuid.
+
+`string uuid_format(string $string [, string $prefix = null, int $length = null])`
 
 #### simple\_uuid
 

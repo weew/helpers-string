@@ -215,6 +215,32 @@ class StringTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(55, strlen(uuid('abcdefghijk', 55)));
     }
 
+    public function test_uuid_format() {
+        $id = uuid_format('1234567812341234123412345678');
+        $this->assertEquals('12345678-1234-1234-1234-12345678', $id);
+    }
+
+    public function test_uuid_format_with_prefix() {
+        $uuid = uuid_format('123', 'foo');
+        $this->assertStringStartsWith('foo', $uuid);
+    }
+
+    public function test_uuid_format_does_not_end_with_a_dash() {
+        $this->assertFalse(str_ends_with(uuid_format('123'), '-'));
+    }
+
+    public function test_uuid_format_removes_double_dashes() {
+        $this->assertFalse(
+            strpos(uuid_format('12345678-1234-1234--1234--12345678'), '--')
+        );
+    }
+
+    public function test_uuid_format_takes_custom_length() {
+        $this->assertEquals(15, strlen(uuid_format('1234567890', null, 15)));
+        $this->assertEquals(55, strlen(uuid_format('1', null, 55)));
+        $this->assertEquals(55, strlen(uuid_format('12345678901', null, 55)));
+    }
+
     public function test_uuid_simple() {
         $id1 = uuid_simple();
         $id2 = uuid_simple();

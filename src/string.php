@@ -269,19 +269,44 @@ if ( ! function_exists('uuid')) {
         $data[6] = chr(ord($data[6]) & 0x0f | 0x40);
         $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
 
-        $uuid = vsprintf(
-            '%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4)
-        );
+        return uuid_format(bin2hex($data), $prefix, $length);
+    }
+}
+
+if ( ! function_exists('uuid_format')) {
+    /**
+     * Format a string as a v4 uuid.
+     *
+     * @param string $string
+     * @param string $prefix
+     * @param int $length
+     *
+     * @return string
+     */
+    function uuid_format($string, $prefix = null, $length = null) {
+        $uuid = implode('-', array_filter([
+            substr($string, 0, 8),
+            substr($string, 8, 4),
+            substr($string, 12, 4),
+            substr($string, 16, 4),
+            substr($string, 20)
+        ]));
 
         if ($prefix) {
             $uuid = s('%s-%s', $prefix, $uuid);
         }
 
-        while (strlen($uuid) < $length) {
-            $uuid .= '-' . uuid();
+        if ($length !== null) {
+            while (strlen($uuid) < $length) {
+                $uuid .= '-' . uuid();
+            }
+
+            $uuid = substr($uuid, 0, $length);
         }
 
-        $uuid = substr($uuid, 0, $length);
+        while (strpos($uuid, '--') !== false) {
+            $uuid = str_replace('--', '-', $uuid);
+        }
 
         while (str_ends_with($uuid, '-')) {
             $uuid = substr($uuid, 0, -1) . str_random(1);
